@@ -1,0 +1,10 @@
+[
+  {
+    "poolId": "channelPool",
+    "corePoolSize": 20,
+    "maxPoolSize": 50,
+    "workQueueSize": 100,
+    "rejectPolicy": 1,
+    "description": "渠道召回线程池"
+  }
+]

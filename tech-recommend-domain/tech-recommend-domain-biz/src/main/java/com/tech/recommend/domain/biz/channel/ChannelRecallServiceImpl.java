@@ -2,6 +2,7 @@ package com.tech.recommend.domain.biz.channel;
 
 import com.tech.recommend.domain.api.context.ChannelContext;
 import com.tech.recommend.domain.api.service.IChannelRecallService;
+import org.springframework.stereotype.Component;
 
 /**
  * 渠道召回上下文
@@ -9,6 +10,7 @@ import com.tech.recommend.domain.api.service.IChannelRecallService;
  * @author winding bubu
  * @since 2025/04/26
  */
+@Component
 public class ChannelRecallServiceImpl implements IChannelRecallService {
 
     @Override
