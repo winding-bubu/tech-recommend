@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = {"com.tech.recommend.*"})
-class TechRecommendApplication {
+public class TechRecommendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(TechRecommendApplication.class, args);

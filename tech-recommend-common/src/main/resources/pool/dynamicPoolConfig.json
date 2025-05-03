@@ -1,5 +1,13 @@
 [
   {
+    "poolId": "defaultPool",
+    "corePoolSize": 50,
+    "maxPoolSize": 100,
+    "workQueueSize": 200,
+    "rejectPolicy": 1,
+    "description": "默认线程池"
+  },
+  {
     "poolId": "channelPool",
     "corePoolSize": 20,
     "maxPoolSize": 50,

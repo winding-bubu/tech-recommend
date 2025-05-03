@@ -22,7 +22,9 @@ public class SceneRecallServiceImpl implements ISceneRecallService {
     @Override
     public void recall(SceneContext sceneContext) {
 
+        // 渠道上下文转换
 
+        // 多线程执行渠道召回
 
     }
 

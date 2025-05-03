@@ -28,6 +28,16 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tech.recommend</groupId>
+            <artifactId>tech-recommend-common</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

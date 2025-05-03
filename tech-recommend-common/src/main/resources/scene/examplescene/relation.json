@@ -1,0 +1,22 @@
+[
+  {
+    "relationType": "scene_channel",
+    "relationFrom": "exampleScene",
+    "relationTo": "exampleChannel1"
+  },
+  {
+    "relationType": "scene_channel",
+    "relationFrom": "exampleScene",
+    "relationTo": "exampleChannel2"
+  },
+  {
+    "relationType": "scene_channel",
+    "relationFrom": "exampleScene",
+    "relationTo": "exampleChannel3"
+  },
+  {
+    "relationType": "channel_generic",
+    "relationFrom": "exampleChannel1",
+    "relationTo": "exampleGeneric1"
+  }
+]

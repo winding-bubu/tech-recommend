@@ -2,7 +2,7 @@ package com.tech.recommend.common.thread.pool;
 
 import com.tech.recommend.common.constant.RejectPolicyEnum;
 import com.tech.recommend.common.thread.config.ThreadPoolConfig;
-import com.tech.recommend.common.util.FileParserUtil;
+import com.tech.recommend.common.util.ConfigParserUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class DynamicThreadPoolFactory {
 
     @Resource
-    private FileParserUtil fileParserUtil;
+    private ConfigParserUtil configParserUtil;
 
     private static final String POOL_PREFIX = "techRecommend_";
 
@@ -36,7 +36,7 @@ public class DynamicThreadPoolFactory {
 
     @PostConstruct
     public void initDynamicThreadPool() {
-        List<ThreadPoolConfig> threadPoolConfigs = fileParserUtil.getThreadPoolConfigs();
+        List<ThreadPoolConfig> threadPoolConfigs = configParserUtil.getThreadPoolConfigs();
         if (CollectionUtils.isEmpty(threadPoolConfigs)) {
             return;
         }
@@ -55,7 +55,7 @@ public class DynamicThreadPoolFactory {
      * @return 动态线程池
      */
     public DynamicThreadPool getPoolById(String poolId) {
-        return dynamicThreadPoolMap.get(poolId);
+        return dynamicThreadPoolMap.containsKey(poolId) ? dynamicThreadPoolMap.get(poolId) : dynamicThreadPoolMap.get("default");
     }
 
     /**
