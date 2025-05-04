@@ -1,7 +1,7 @@
 package com.tech.recommend.domain.biz.template;
 
 import com.tech.recommend.domain.api.context.TemplateContext;
-import com.tech.recommend.domain.api.service.ITemplateRecallService;
+import com.tech.recommend.domain.api.biz.ITemplateRecallService;
 import org.springframework.stereotype.Service;
 
 /**

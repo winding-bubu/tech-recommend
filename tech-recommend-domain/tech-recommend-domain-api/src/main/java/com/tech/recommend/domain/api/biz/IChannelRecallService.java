@@ -1,4 +1,4 @@
-package com.tech.recommend.domain.api.service;
+package com.tech.recommend.domain.api.biz;
 
 import com.tech.recommend.domain.api.context.ChannelContext;
 

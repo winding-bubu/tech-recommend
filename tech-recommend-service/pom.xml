@@ -23,4 +23,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>com.tech.recommend</groupId>
+            <artifactId>tech-recommend-domain-api</artifactId>
+        </dependency>
+
+    </dependencies>
+
 </project>

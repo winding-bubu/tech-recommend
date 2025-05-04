@@ -1,16 +1,18 @@
 package com.tech.recommend.domain.api.context;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.util.List;
 
 /**
- * todo
+ * 泛化上下文
  *
  * @author winding bubu
  * @since 2025/04/26
  */
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class GenericContext extends BaseContext {
@@ -26,9 +28,9 @@ public class GenericContext extends BaseContext {
     private String sourceId;
 
     /**
-     * 泛化策略ID列表
+     * 泛化ID列表
      */
-    private List<String> strategyIds;
+    private List<String> genericIds;
 
     public boolean isSceneGeneric() {
         return "scene".equals(sourceType);

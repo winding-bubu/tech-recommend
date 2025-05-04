@@ -10,13 +10,28 @@
     "relationTo": "exampleChannel2"
   },
   {
-    "relationType": "scene_channel",
+    "relationType": "scene_generic",
     "relationFrom": "exampleScene",
-    "relationTo": "exampleChannel3"
+    "relationTo": "exampleGeneric1"
+  },
+  {
+    "relationType": "scene_enhance",
+    "relationFrom": "exampleScene",
+    "relationTo": "exampleEnhance1"
   },
   {
     "relationType": "channel_generic",
     "relationFrom": "exampleChannel1",
-    "relationTo": "exampleGeneric1"
+    "relationTo": "exampleGeneric2"
+  },
+  {
+    "relationType": "channel_enhance",
+    "relationFrom": "exampleChannel1",
+    "relationTo": "exampleEnhance2"
+  },
+  {
+    "relationType": "scene_pool",
+    "relationFrom": "exampleScene",
+    "relationTo": "exampleScenePool"
   }
 ]

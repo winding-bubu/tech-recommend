@@ -1,5 +1,6 @@
 package com.tech.recommend.common.configuration.config;
 
+import com.tech.recommend.common.thread.pool.DynamicThreadPool;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -50,5 +51,10 @@ public class ConfigurationInfo {
      * 模板配置 [渠道ID:模板配置]
      */
     private Map<String, TemplateConfig> templateConfigs = new HashMap<>();
+
+    /**
+     * 场景维度的动态线程池
+     */
+    private DynamicThreadPool sceneThreadPool;
 
 }

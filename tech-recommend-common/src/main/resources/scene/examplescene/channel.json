@@ -8,10 +8,5 @@
     "channelId": "exampleChannel2",
     "recallNum": 200,
     "description": "示例渠道2"
-  },
-  {
-    "channelId": "exampleChannel3",
-    "recallNum": 200,
-    "description": "示例渠道3"
   }
 ]

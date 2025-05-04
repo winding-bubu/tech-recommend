@@ -4,6 +4,8 @@ import com.tech.recommend.common.constant.ErrorCodeEnum;
 import com.tech.recommend.common.constant.RelationEnum;
 import com.tech.recommend.common.configuration.config.*;
 import com.tech.recommend.common.exception.TechRecommendException;
+import com.tech.recommend.common.thread.pool.DynamicThreadPool;
+import com.tech.recommend.common.thread.pool.DynamicThreadPoolFactory;
 import com.tech.recommend.common.util.ConfigParserUtil;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +29,9 @@ public class ConfigurationFactory {
 
     @Resource
     private ConfigParserUtil configParserUtil;
+    
+    @Resource
+    private DynamicThreadPoolFactory dynamicThreadPoolFactory;
 
     @PostConstruct
     public void initConfig() {
@@ -89,6 +94,13 @@ public class ConfigurationFactory {
             for (RelationConfig relationConfig : sceneChannelRelations) {
                 configurationInfo.getChannelConfigs().add(channelConfigMap.get(relationConfig.getRelationTo()));
             }
+            // 场景关联线程池
+            String poolId = Optional.ofNullable(relationConfigMap.get(RelationEnum.SCENE_POOL.getCode()))
+                    .map(relationMap -> relationMap.get(sceneConfig.getSceneId()))
+                    .map(relations -> relations.get(0))
+                    .map(RelationConfig::getRelationTo)
+                    .orElse(null);
+            configurationInfo.setSceneThreadPool(dynamicThreadPoolFactory.getPoolById(poolId));
             // 渠道处理
             for (ChannelConfig channelConfig : configurationInfo.getChannelConfigs()) {
                 // 渠道关联泛化
@@ -151,6 +163,17 @@ public class ConfigurationFactory {
     public List<EnhanceConfig> getSceneEnhanceConfigs(String sceneId) {
         this.configCheck(sceneId);
         return configurationInfos.get(sceneId).getSceneEnhanceConfigs();
+    }
+
+    /**
+     * 获取场景关联的动态线程池
+     * 
+     * @param sceneId 场景ID
+     * @return 动态线程池
+     */
+    public DynamicThreadPool getSceneThreadPool(String sceneId) {
+        this.configCheck(sceneId);
+        return configurationInfos.get(sceneId).getSceneThreadPool();
     }
 
     /**

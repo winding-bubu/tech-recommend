@@ -12,34 +12,39 @@ import lombok.Getter;
 public enum RelationEnum {
 
     /**
-     * 场景 关联 渠道
+     * 场景 - 渠道
      */
-    SCENE_CHANNEL("SCENE_CHANNEL"),
+    SCENE_CHANNEL("scene_channel"),
 
     /**
-     * 场景 关联 泛化
+     * 场景 - 泛化
      */
-    SCENE_GENERIC("SCENE_GENERIC"),
+    SCENE_GENERIC("scene_generic"),
 
     /**
-     * 渠道 关联 泛化
+     * 场景 - 增强
      */
-    CHANNEL_GENERIC("CHANNEL_GENERIC"),
+    SCENE_ENHANCE("scene_enhance"),
 
     /**
-     * 场景 关联 增强
+     * 场景 - 线程池
      */
-    SCENE_ENHANCE("SCENE_ENHANCE"),
+    SCENE_POOL("scene_pool"),
 
     /**
-     * 渠道 关联 增强
+     * 渠道 - 泛化
      */
-    CHANNEL_ENHANCE("CHANNEL_ENHANCE"),
+    CHANNEL_GENERIC("channel_generic"),
 
     /**
-     * 渠道 关联 模板
+     * 渠道 - 增强
      */
-    CHANNEL_TEMPLATE("CHANNEL_TEMPLATE"),
+    CHANNEL_ENHANCE("channel_enhance"),
+
+    /**
+     * 渠道 - 模板
+     */
+    CHANNEL_TEMPLATE("channel_template"),
 
     ;
 

@@ -31,6 +31,11 @@
             <artifactId>tech-recommend-common</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.tech.recommend</groupId>
+            <artifactId>tech-recommend-facade</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

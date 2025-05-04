@@ -1,7 +1,7 @@
 package com.tech.recommend.domain.biz.channel;
 
 import com.tech.recommend.domain.api.context.ChannelContext;
-import com.tech.recommend.domain.api.service.IChannelRecallService;
+import com.tech.recommend.domain.api.biz.IChannelRecallService;
 import org.springframework.stereotype.Component;
 
 /**
