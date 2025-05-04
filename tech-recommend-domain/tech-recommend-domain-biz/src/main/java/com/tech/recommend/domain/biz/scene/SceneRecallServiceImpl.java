@@ -1,16 +1,15 @@
 package com.tech.recommend.domain.biz.scene;
 
-import com.tech.recommend.common.configuration.config.GenericConfig;
-import com.tech.recommend.common.configuration.factory.ConfigurationFactory;
+import com.tech.recommend.common.exception.TechRecommendException;
 import com.tech.recommend.domain.api.context.SceneContext;
-import com.tech.recommend.domain.api.biz.IChannelRecallService;
-import com.tech.recommend.domain.api.biz.IGenericService;
 import com.tech.recommend.domain.api.biz.ISceneRecallService;
+import com.tech.recommend.domain.biz.scene.service.SceneEnhanceExecutor;
+import com.tech.recommend.domain.biz.scene.service.SceneGenericExecutor;
+import com.tech.recommend.domain.biz.scene.service.SceneRecallExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * 场景召回实现
@@ -23,42 +22,28 @@ import java.util.List;
 public class SceneRecallServiceImpl implements ISceneRecallService {
 
     @Resource
-    private IChannelRecallService channelRecallService;
+    private SceneGenericExecutor sceneGenericExecutor;
 
     @Resource
-    private IGenericService genericService;
+    private SceneRecallExecutor sceneRecallExecutor;
 
     @Resource
-    private ConfigurationFactory configurationFactory;
+    private SceneEnhanceExecutor sceneEnhanceExecutor;
 
     @Override
     public void recall(SceneContext sceneContext) {
         try {
             // 执行场景泛化
-            this.doSceneGeneric(sceneContext);
+            sceneGenericExecutor.generic(sceneContext);
             // 执行召回
-            this.doSceneRecall(sceneContext);
+            sceneRecallExecutor.recall(sceneContext);
             // 执行场景增强
-            this.doSceneEnhance(sceneContext);
+            sceneEnhanceExecutor.enhance(sceneContext);
+        } catch (TechRecommendException te) {
+            log.error("scene recall custom error", te);
         } catch (Exception e) {
             log.error("scene recall occur error", e);
         }
-    }
-
-    private void doSceneGeneric(SceneContext sceneContext) {
-
-        // 获取场景泛化配置
-        List<GenericConfig> sceneGenericConfigs = configurationFactory.getSceneGenericConfigs(sceneContext.getSceneId());
-
-
-    }
-
-    private void doSceneRecall(SceneContext sceneContext) {
-
-    }
-
-    private void doSceneEnhance(SceneContext sceneContext) {
-
     }
 
 }

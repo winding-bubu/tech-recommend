@@ -1,7 +1,9 @@
 package com.tech.recommend.domain.api.context;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 模板上下文
@@ -9,9 +11,13 @@ import lombok.EqualsAndHashCode;
  * @author winding bubu
  * @since 2025/04/24
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class TemplateContext extends BaseContext {
+public class TemplateContext {
+
+    /**
+     * 请求ID
+     */
+    private String requestId;
 
     /**
      * 场景ID
@@ -27,5 +33,19 @@ public class TemplateContext extends BaseContext {
      * 模板ID
      */
     private String templateId;
+
+    /**
+     * 召回基础参数
+     */
+    private Map<String, Object> params = new HashMap<>();
+
+    /**
+     * 参数弱拷贝
+     *
+     * @return 新集合
+     */
+    public Map<String, Object> cloneParams() {
+        return new HashMap<>(params);
+    }
 
 }

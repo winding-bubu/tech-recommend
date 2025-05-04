@@ -13,6 +13,8 @@ public enum ErrorCodeEnum {
 
     CONFIG_NOT_EXIST(1001, "config not exist"),
 
+    CHANNEL_LACK(1002, "lack of channel"),
+
     ;
 
     private final int code;

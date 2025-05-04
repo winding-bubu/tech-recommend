@@ -22,6 +22,11 @@ public class ChannelConfig {
     private Integer recallNum;
 
     /**
+     * 渠道召回超时时间
+     */
+    private Integer timeout;
+
+    /**
      * 描述
      */
     private String description;

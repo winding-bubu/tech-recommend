@@ -2,11 +2,13 @@
   {
     "channelId": "exampleChannel1",
     "recallNum": 200,
+    "timeout": 200,
     "description": "示例渠道1"
   },
   {
     "channelId": "exampleChannel2",
     "recallNum": 200,
+    "timeout": 200,
     "description": "示例渠道2"
   }
 ]

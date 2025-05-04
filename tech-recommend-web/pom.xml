@@ -38,6 +38,11 @@
             <artifactId>tech-recommend-common</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.tech.recommend</groupId>
+            <artifactId>tech-recommend-domain-biz</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

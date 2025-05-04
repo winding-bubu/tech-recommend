@@ -2,7 +2,6 @@ package com.tech.recommend.domain.api.context;
 
 import com.tech.recommend.facade.model.ResultItem;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
@@ -12,9 +11,13 @@ import java.util.List;
  * @author winding bubu
  * @since 2025/05/04
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class EnhanceContext extends BaseContext {
+public class EnhanceContext {
+
+    /**
+     * 请求ID
+     */
+    private String requestId;
 
     /**
      * 增强请求来源: scene:场景泛化请求、channel:渠道泛化请求
@@ -22,9 +25,14 @@ public class EnhanceContext extends BaseContext {
     private String sourceType;
 
     /**
-     * 来源ID: 如果是场景来源，就是场景ID；如果是渠道来源，就是渠道ID，以此类推
+     * 场景ID
      */
-    private String sourceId;
+    private String sceneId;
+
+    /**
+     * 渠道ID
+     */
+    private String channelId;
 
     /**
      * 增强ID列表
