@@ -1,4 +1,4 @@
-package com.tech.recommend.common.scene.config;
+package com.tech.recommend.common.configuration.config;
 
 import lombok.Data;
 

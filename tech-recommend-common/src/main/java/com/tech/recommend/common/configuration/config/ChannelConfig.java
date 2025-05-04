@@ -1,20 +1,20 @@
-package com.tech.recommend.common.scene.config;
+package com.tech.recommend.common.configuration.config;
 
 import lombok.Data;
 
 /**
- * 场景配置
+ * 渠道配置
  *
  * @author winding bubu
  * @since 2025/05/03
  */
 @Data
-public class SceneConfig {
+public class ChannelConfig {
 
     /**
-     * 场景ID
+     * 渠道ID
      */
-    private String sceneId;
+    private String channelId;
 
     /**
      * 召回数量
@@ -22,7 +22,7 @@ public class SceneConfig {
     private Integer recallNum;
 
     /**
-     * 场景描述
+     * 描述
      */
     private String description;
 

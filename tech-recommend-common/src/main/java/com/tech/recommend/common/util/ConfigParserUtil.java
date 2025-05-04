@@ -1,7 +1,7 @@
 package com.tech.recommend.common.util;
 
 import com.alibaba.fastjson2.JSON;
-import com.tech.recommend.common.scene.config.*;
+import com.tech.recommend.common.configuration.config.*;
 import com.tech.recommend.common.thread.config.ThreadPoolConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;

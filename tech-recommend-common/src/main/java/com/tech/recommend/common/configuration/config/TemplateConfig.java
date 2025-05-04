@@ -1,20 +1,20 @@
-package com.tech.recommend.common.scene.config;
+package com.tech.recommend.common.configuration.config;
 
 import lombok.Data;
 
 /**
- * 泛化配置
+ * 模板配置
  *
  * @author winding bubu
  * @since 2025/05/03
  */
 @Data
-public class GenericConfig {
+public class TemplateConfig {
 
     /**
-     * 泛化ID
+     * 模板ID
      */
-    private String genericId;
+    private String templateId;
 
     /**
      * 描述

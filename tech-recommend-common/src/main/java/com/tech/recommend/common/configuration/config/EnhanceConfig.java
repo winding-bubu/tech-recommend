@@ -1,20 +1,20 @@
-package com.tech.recommend.common.scene.config;
+package com.tech.recommend.common.configuration.config;
 
 import lombok.Data;
 
 /**
- * 模板配置
+ * 增强节点配置
  *
  * @author winding bubu
  * @since 2025/05/03
  */
 @Data
-public class TemplateConfig {
+public class EnhanceConfig {
 
     /**
-     * 模板ID
+     * 增强节点ID
      */
-    private String templateId;
+    private String enhanceId;
 
     /**
      * 描述

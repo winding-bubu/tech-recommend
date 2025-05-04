@@ -1,10 +1,10 @@
 package com.tech.recommend.common.util;
 
 import com.alibaba.fastjson2.JSON;
-import com.tech.recommend.common.scene.config.ChannelConfig;
-import com.tech.recommend.common.scene.config.GenericConfig;
-import com.tech.recommend.common.scene.config.RelationConfig;
-import com.tech.recommend.common.scene.config.SceneConfig;
+import com.tech.recommend.common.configuration.config.ChannelConfig;
+import com.tech.recommend.common.configuration.config.GenericConfig;
+import com.tech.recommend.common.configuration.config.RelationConfig;
+import com.tech.recommend.common.configuration.config.SceneConfig;
 import com.tech.recommend.web.TechRecommendApplication;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
