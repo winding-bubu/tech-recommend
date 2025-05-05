@@ -1,10 +1,10 @@
-package com.tech.recommend.domain.biz.scene.service;
+package com.tech.recommend.domain.biz.channel.executor;
 
 import com.tech.recommend.common.configuration.config.EnhanceConfig;
 import com.tech.recommend.common.configuration.factory.ConfigurationFactory;
 import com.tech.recommend.domain.api.biz.IEnhanceService;
+import com.tech.recommend.domain.api.context.ChannelContext;
 import com.tech.recommend.domain.api.context.EnhanceContext;
-import com.tech.recommend.domain.api.context.SceneContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 
@@ -13,43 +13,45 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 场景增强服务
+ * 渠道增强处理
  *
  * @author winding bubu
  * @since 2025/05/04
  */
 @Component
-public class SceneEnhanceExecutor {
+public class ChannelEnhanceExecutor {
 
     @Resource
     private ConfigurationFactory configurationFactory;
 
     @Resource
     private IEnhanceService enhanceService;
-
+    
     /**
-     * 场景增强服务执行
+     * 渠道增强执行
      * 
-     * @param sceneContext 上下文
+     * @param context 渠道上下文
      */
-    public void enhance(SceneContext sceneContext) { 
+    public void enhance(ChannelContext context) {
         
         // 增强配置获取
-        List<EnhanceConfig> sceneEnhanceConfigs = configurationFactory.getSceneEnhanceConfigs(sceneContext.getSceneId());
-        if (CollectionUtils.isEmpty(sceneEnhanceConfigs)) {
+        List<EnhanceConfig> channelEnhanceConfigs =
+            configurationFactory.getChannelEnhanceConfigs(context.getSceneId(), context.getChannelId());
+        if (CollectionUtils.isEmpty(channelEnhanceConfigs)) {
             return;
         }
 
-        // 上下文转换
-        List<String> enhanceIds = sceneEnhanceConfigs.stream()
+        // 上下文获取
+        List<String> enhanceIds = channelEnhanceConfigs.stream()
                 .map(EnhanceConfig::getEnhanceId)
                 .collect(Collectors.toList());
         EnhanceContext enhanceContext = new EnhanceContext();
-        enhanceContext.setRequestId(sceneContext.getRequestId());
-        enhanceContext.setSourceType("scene");
-        enhanceContext.setSceneId(sceneContext.getSceneId());
+        enhanceContext.setRequestId(context.getRequestId());
+        enhanceContext.setSourceType("channel");
+        enhanceContext.setSceneId(context.getSceneId());
+        enhanceContext.setChannelId(context.getChannelId());
         enhanceContext.setEnhanceIds(enhanceIds);
-        enhanceContext.setResultItems(sceneContext.getResultItems());
+        enhanceContext.setResultItems(context.getResultItems());
 
         // 执行
         enhanceService.enhance(enhanceContext);

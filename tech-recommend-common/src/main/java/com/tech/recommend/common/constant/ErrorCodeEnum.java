@@ -13,7 +13,9 @@ public enum ErrorCodeEnum {
 
     CONFIG_NOT_EXIST(1001, "config not exist"),
 
-    CHANNEL_LACK(1002, "lack of channel"),
+    CHANNEL_LACK(1002, "lack of channel config"),
+
+    TEMPLATE_LACK(1002, "lack of template config"),
 
     ;
 

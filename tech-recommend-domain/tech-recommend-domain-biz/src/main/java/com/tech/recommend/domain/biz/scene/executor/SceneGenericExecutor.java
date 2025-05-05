@@ -1,4 +1,4 @@
-package com.tech.recommend.domain.biz.scene.service;
+package com.tech.recommend.domain.biz.scene.executor;
 
 import com.tech.recommend.common.configuration.config.GenericConfig;
 import com.tech.recommend.common.configuration.factory.ConfigurationFactory;

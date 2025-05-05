@@ -33,5 +33,15 @@
     "relationType": "scene_pool",
     "relationFrom": "exampleScene",
     "relationTo": "exampleScenePool"
+  },
+  {
+    "relationType": "channel_template",
+    "relationFrom": "exampleChannel1",
+    "relationTo": "exampleTemplate1"
+  },
+  {
+    "relationType": "channel_template",
+    "relationFrom": "exampleChannel2",
+    "relationTo": "exampleTemplate2"
   }
 ]

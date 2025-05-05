@@ -3,9 +3,9 @@ package com.tech.recommend.domain.biz.scene;
 import com.tech.recommend.common.exception.TechRecommendException;
 import com.tech.recommend.domain.api.context.SceneContext;
 import com.tech.recommend.domain.api.biz.ISceneRecallService;
-import com.tech.recommend.domain.biz.scene.service.SceneEnhanceExecutor;
-import com.tech.recommend.domain.biz.scene.service.SceneGenericExecutor;
-import com.tech.recommend.domain.biz.scene.service.SceneRecallExecutor;
+import com.tech.recommend.domain.biz.scene.executor.SceneEnhanceExecutor;
+import com.tech.recommend.domain.biz.scene.executor.SceneGenericExecutor;
+import com.tech.recommend.domain.biz.scene.executor.SceneRecallExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

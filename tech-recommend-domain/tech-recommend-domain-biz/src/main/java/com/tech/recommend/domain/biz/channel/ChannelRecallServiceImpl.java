@@ -3,9 +3,9 @@ package com.tech.recommend.domain.biz.channel;
 import com.tech.recommend.common.exception.TechRecommendException;
 import com.tech.recommend.domain.api.context.ChannelContext;
 import com.tech.recommend.domain.api.biz.IChannelRecallService;
-import com.tech.recommend.domain.biz.channel.service.ChannelEnhanceExecutor;
-import com.tech.recommend.domain.biz.channel.service.ChannelGenericExecutor;
-import com.tech.recommend.domain.biz.channel.service.ChannelRecallExecutor;
+import com.tech.recommend.domain.biz.channel.executor.ChannelEnhanceExecutor;
+import com.tech.recommend.domain.biz.channel.executor.ChannelGenericExecutor;
+import com.tech.recommend.domain.biz.channel.executor.ChannelRecallExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

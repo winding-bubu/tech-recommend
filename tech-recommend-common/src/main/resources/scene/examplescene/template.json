@@ -1,0 +1,10 @@
+[
+  {
+    "templateId": "exampleTemplate1",
+    "description": "示例模板1"
+  },
+  {
+    "templateId": "exampleTemplate2",
+    "description": "示例模板2"
+  }
+]

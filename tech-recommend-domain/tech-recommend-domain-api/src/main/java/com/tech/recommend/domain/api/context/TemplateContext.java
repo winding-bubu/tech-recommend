@@ -35,6 +35,16 @@ public class TemplateContext {
     private String templateId;
 
     /**
+     * 超时时间
+     */
+    private Integer timeout;
+
+    /**
+     * 召回数量
+     */
+    private Integer recallNum;
+
+    /**
      * 召回基础参数
      */
     private Map<String, Object> params = new HashMap<>();

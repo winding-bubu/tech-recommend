@@ -1,4 +1,4 @@
-package com.tech.recommend.domain.biz.scene.service;
+package com.tech.recommend.domain.biz.scene.executor;
 
 import com.tech.recommend.common.configuration.config.ChannelConfig;
 import com.tech.recommend.common.configuration.factory.ConfigurationFactory;
@@ -59,6 +59,8 @@ public class SceneRecallExecutor {
             context.setRequestId(sceneContext.getRequestId());
             context.setSceneId(sceneContext.getSceneId());
             context.setChannelId(channelConfig.getChannelId());
+            context.setTimeout(channelConfig.getTimeout());
+            context.setRecallNum(channelConfig.getRecallNum());
             context.setParams(sceneContext.cloneParams());
             // 异步执行渠道召回
             CompletableFuture<List<ResultItem>> future = CompletableFuture.supplyAsync(() -> {
