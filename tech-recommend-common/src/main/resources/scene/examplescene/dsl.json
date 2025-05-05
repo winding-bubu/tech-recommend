@@ -1,0 +1,10 @@
+[
+  {
+    "id": "exampleDsl1",
+    "dsl": {"query":{"match":{"id":"#id"}}}
+  },
+  {
+    "id": "exampleDsl2",
+    "dsl": {"query":{"match":{"id":"#uid"}}}
+  }
+]

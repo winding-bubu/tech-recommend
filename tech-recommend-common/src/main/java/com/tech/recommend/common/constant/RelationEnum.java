@@ -46,6 +46,16 @@ public enum RelationEnum {
      */
     CHANNEL_TEMPLATE("channel_template"),
 
+    /**
+     * 模板 - 索引
+     */
+    TEMPLATE_INDEX("template_index"),
+
+    /**
+     * 模板 - dsl
+     */
+    TEMPLATE_DSL("template_dsl"),
+
     ;
 
     private final String code;

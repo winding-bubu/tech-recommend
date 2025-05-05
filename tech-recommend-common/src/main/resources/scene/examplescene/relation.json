@@ -43,5 +43,15 @@
     "relationType": "channel_template",
     "relationFrom": "exampleChannel2",
     "relationTo": "exampleTemplate2"
+  },
+  {
+    "relationType": "template_index",
+    "relationFrom": "exampleTemplate1",
+    "relationTo": "my-index"
+  },
+  {
+    "relationType": "template_index",
+    "relationFrom": "exampleTemplate2",
+    "relationTo": "my-index"
   }
 ]

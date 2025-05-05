@@ -57,4 +57,14 @@ public class ConfigurationInfo {
      */
     private DynamicThreadPool sceneThreadPool;
 
+    /**
+     * 索引配置 [模板ID:索引配置]
+     */
+    private Map<String, IndexConfig> indexConfigs = new HashMap<>();
+
+    /**
+     * dsl配置 [模板ID:dsl]
+     */
+    private Map<String, DslConfig> dslConfigs = new HashMap<>();
+
 }

@@ -41,6 +41,8 @@ public class ConfigParserUtil {
 
     private static final String ENHANCE_JSON_PATTERN = "classpath:scene/*/enhance.json";
 
+    private static final String DSL_JSON_PATTERN = "classpath:scene/*/dsl.json";
+
     /**
      * 解析获取线程池配置
      *
@@ -225,6 +227,35 @@ public class ConfigParserUtil {
     }
 
     /**
+     * 获取全部DSL配置
+     *
+     * @return DSL配置集合
+     */
+    public List<DslConfig> getDslConfigs() {
+        List<DslConfig> result = new ArrayList<>();
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+
+        try {
+            Resource[] resources = resolver.getResources(ENHANCE_JSON_PATTERN);
+
+            for (Resource resource : resources) {
+                // 获取相对路径
+                String path = this.extractResourcePath(resource);
+                if (StringUtils.isBlank(path)) {
+                    continue;
+                }
+                // 文件解析
+                List<DslConfig> dslConfigs = parseJsonFileArray(path, DslConfig.class);
+                result.addAll(dslConfigs);
+            }
+        } catch (Exception e) {
+            log.error("Failed to load enhance configurations", e);
+        }
+
+        return result;
+    }
+
+    /**
      * 资源路径提取
      * 
      * @param resource 资源
@@ -247,6 +278,15 @@ public class ConfigParserUtil {
             log.error("ConfigParserUtil extractResourcePath error", e);
         }
         return null;
+    }
+
+    /**
+     * 获取索引配置
+     * 
+     * @return 索引配置集合
+     */
+    public List<IndexConfig> getIndexConfigs() {
+        return this.parseJsonFileArray("index/index.json", IndexConfig.class);
     }
 
     /**

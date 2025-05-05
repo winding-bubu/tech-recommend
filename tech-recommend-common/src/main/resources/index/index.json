@@ -1,0 +1,7 @@
+[
+  {
+    "indexId": "my-index",
+    "type": "es",
+    "description": "示例索引"
+  }
+]

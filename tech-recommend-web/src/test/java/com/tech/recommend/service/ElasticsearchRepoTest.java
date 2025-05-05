@@ -1,5 +1,6 @@
 package com.tech.recommend.service;
 
+import com.alibaba.fastjson2.JSON;
 import com.tech.recommend.facade.model.ResultItem;
 import com.tech.recommend.service.repo.es.ElasticsearchRepo;
 import com.tech.recommend.web.TechRecommendApplication;
@@ -35,8 +36,8 @@ public class ElasticsearchRepoTest {
                 "  }\n" +
                 "}";
 
-        List<ResultItem> search = elasticsearchRepo.search(dsl);
-        log.info(search.toString());
+        List<ResultItem> search = elasticsearchRepo.search("my-index", dsl);
+        log.info(JSON.toJSONString(search));
     }
 
 }

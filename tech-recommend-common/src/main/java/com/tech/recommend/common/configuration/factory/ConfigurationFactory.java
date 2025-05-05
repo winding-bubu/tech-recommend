@@ -70,6 +70,16 @@ public class ConfigurationFactory {
         for (EnhanceConfig enhanceConfig : enhanceConfigs) {
             enhanceConfigMap.put(enhanceConfig.getEnhanceId(), enhanceConfig);
         }
+        List<IndexConfig> indexConfigs = configParserUtil.getIndexConfigs();
+        Map<String, IndexConfig> indexConfigMap = new HashMap<>();
+        for (IndexConfig indexConfig : indexConfigs) {
+            indexConfigMap.put(indexConfig.getIndexId(), indexConfig);
+        }
+        List<DslConfig> dslConfigs = configParserUtil.getDslConfigs();
+        Map<String, DslConfig> dslConfigMap = new HashMap<>();
+        for (DslConfig dslConfig : dslConfigs) {
+            dslConfigMap.put(dslConfig.getId(), dslConfig);
+        }
         for (SceneConfig sceneConfig : sceneConfigs) {
             ConfigurationInfo configurationInfo = new ConfigurationInfo();
             configurationInfo.setSceneConfig(sceneConfig);
@@ -127,7 +137,23 @@ public class ConfigurationFactory {
                     configurationInfo.getTemplateConfigs().put(channelConfig.getChannelId(), templateConfigMap.get(relationConfig.getRelationTo()));
                 }
             }
-
+            // 模板处理
+            for (TemplateConfig templateConfig : templateConfigs) {
+                // 模板关联索引
+                List<RelationConfig> templateIndexRelations = Optional.ofNullable(relationConfigMap.get(RelationEnum.TEMPLATE_INDEX.getCode()))
+                        .map(templateIndexRelation -> templateIndexRelation.get(templateConfig.getTemplateId()))
+                        .orElse(new ArrayList<>());
+                for (RelationConfig relationConfig : templateIndexRelations) {
+                    configurationInfo.getIndexConfigs().put(templateConfig.getTemplateId(), indexConfigMap.get(relationConfig.getRelationTo()));
+                }
+                // 模板关联dsl
+                List<RelationConfig> templateDslRelations = Optional.ofNullable(relationConfigMap.get(RelationEnum.TEMPLATE_DSL.getCode()))
+                        .map(templateDslRelation -> templateDslRelation.get(templateConfig.getTemplateId()))
+                        .orElse(new ArrayList<>());
+                for (RelationConfig relationConfig : templateDslRelations) {
+                    configurationInfo.getDslConfigs().put(templateConfig.getTemplateId(), dslConfigMap.get(relationConfig.getRelationTo()));
+                }
+            }
             configurationInfos.put(sceneConfig.getSceneId(), configurationInfo);
         }
     }
