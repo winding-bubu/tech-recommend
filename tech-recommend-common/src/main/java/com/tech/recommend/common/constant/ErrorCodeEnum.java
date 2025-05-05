@@ -15,7 +15,9 @@ public enum ErrorCodeEnum {
 
     CHANNEL_LACK(1002, "lack of channel config"),
 
-    TEMPLATE_LACK(1002, "lack of template config"),
+    TEMPLATE_LACK(1003, "lack of template config"),
+
+    ES_ERROR(1004, "es server error"),
 
     ;
 

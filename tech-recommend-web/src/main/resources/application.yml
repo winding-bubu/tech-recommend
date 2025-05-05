@@ -1,2 +1,11 @@
 server:
   port: 8080
+
+# 自定义配置（无 spring. 前缀）
+elasticsearch:
+  host: 121.43.77.146
+  port: 9200
+  username: elastic
+  password: your_password
+  ssl:
+    verify: false  # 开发环境跳过证书验证

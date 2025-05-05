@@ -42,6 +42,11 @@
             <groupId>com.tech.recommend</groupId>
             <artifactId>tech-recommend-domain-biz</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tech.recommend</groupId>
+            <artifactId>tech-recommend-service</artifactId>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 

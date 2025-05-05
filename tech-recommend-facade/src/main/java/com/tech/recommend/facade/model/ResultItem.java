@@ -1,6 +1,9 @@
 package com.tech.recommend.facade.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Map;
 import java.util.Set;
@@ -11,6 +14,9 @@ import java.util.Set;
  * @author winding bubu
  * @since 2025/05/04
  */
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class ResultItem {
 
