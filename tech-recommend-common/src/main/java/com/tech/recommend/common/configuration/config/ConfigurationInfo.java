@@ -2,6 +2,7 @@ package com.tech.recommend.common.configuration.config;
 
 import com.tech.recommend.common.thread.pool.DynamicThreadPool;
 import lombok.Data;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,5 +67,18 @@ public class ConfigurationInfo {
      * dsl配置 [模板ID:dsl]
      */
     private Map<String, DslConfig> dslConfigs = new HashMap<>();
+
+    public List<GenericConfig> getGenericConfigs() {
+        List<GenericConfig> genericConfigs = new ArrayList<>();
+        if (CollectionUtils.isNotEmpty(sceneGenericConfigs)) {
+            genericConfigs.addAll(sceneGenericConfigs);
+        }
+        channelGenericConfigs.forEach((key, value) -> {
+            if (CollectionUtils.isNotEmpty(value)) {
+                genericConfigs.addAll(value);
+            }
+        });
+        return genericConfigs;
+    }
 
 }

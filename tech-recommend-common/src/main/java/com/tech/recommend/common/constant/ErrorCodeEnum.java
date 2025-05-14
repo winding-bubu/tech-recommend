@@ -11,13 +11,15 @@ import lombok.Getter;
 @Getter
 public enum ErrorCodeEnum {
 
-    CONFIG_NOT_EXIST(1001, "config not exist"),
+    CONFIG_NOT_EXIST(1001, "配置不存在"),
 
-    CHANNEL_LACK(1002, "lack of channel config"),
+    CHANNEL_LACK(1002, "渠道配置不存在，请检查！"),
 
-    TEMPLATE_LACK(1003, "lack of template config"),
+    TEMPLATE_LACK(1003, "模板配置不存在，请检查！"),
 
-    ES_ERROR(1004, "es server error"),
+    ES_ERROR(1004, "es服务异常"),
+
+    SYSTEM_ERROR(1010, "系统异常"),
 
     ;
 

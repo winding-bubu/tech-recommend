@@ -279,6 +279,21 @@ public class ConfigurationFactory {
                 .orElse(null);
     }
 
+    /**
+     * 获取泛化配置
+     * 
+     * @param sceneId 场景ID
+     * @param genericId 泛化ID
+     * @return 泛化配置
+     */
+    public GenericConfig getGenericConfig(String sceneId, String genericId) {
+        this.configCheck(sceneId);
+        return configurationInfos.get(sceneId).getGenericConfigs().stream()
+                .filter(genericConfig -> genericConfig.getGenericId().equals(genericId))
+                .findFirst()
+                .orElse(null);
+    }
+
     private void configCheck(String sceneId) {
         if (configurationInfos.get(sceneId) == null) {
             throw new TechRecommendException(ErrorCodeEnum.CONFIG_NOT_EXIST);
