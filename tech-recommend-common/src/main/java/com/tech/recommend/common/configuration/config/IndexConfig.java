@@ -1,5 +1,6 @@
 package com.tech.recommend.common.configuration.config;
 
+import com.tech.recommend.common.constant.IndexTypeEnum;
 import lombok.Data;
 
 /**
@@ -27,5 +28,9 @@ public class IndexConfig {
      * 描述
      */
     private String description;
+
+    public boolean isEsType() {
+        return IndexTypeEnum.ES.getCode().equals(type);
+    }
 
 }

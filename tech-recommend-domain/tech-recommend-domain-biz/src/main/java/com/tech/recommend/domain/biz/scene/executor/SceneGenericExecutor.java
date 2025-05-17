@@ -1,7 +1,7 @@
 package com.tech.recommend.domain.biz.scene.executor;
 
 import com.tech.recommend.common.configuration.config.GenericConfig;
-import com.tech.recommend.common.configuration.factory.ConfigurationFactory;
+import com.tech.recommend.common.configuration.factory.ConfigurationLoader;
 import com.tech.recommend.domain.api.biz.IGenericService;
 import com.tech.recommend.domain.api.context.GenericContext;
 import com.tech.recommend.domain.api.context.SceneContext;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class SceneGenericExecutor {
 
     @Resource
-    private ConfigurationFactory configurationFactory;
+    private ConfigurationLoader configurationLoader;
 
     @Resource
     private IGenericService genericService;
@@ -38,7 +38,7 @@ public class SceneGenericExecutor {
     public void generic(SceneContext sceneContext) {
 
         // 泛化配置获取
-        List<GenericConfig> sceneGenericConfigs = configurationFactory.getSceneGenericConfigs(sceneContext.getSceneId());
+        List<GenericConfig> sceneGenericConfigs = configurationLoader.getSceneGenericConfigs(sceneContext.getSceneId());
         if (CollectionUtils.isEmpty(sceneGenericConfigs)) {
             return;
         }

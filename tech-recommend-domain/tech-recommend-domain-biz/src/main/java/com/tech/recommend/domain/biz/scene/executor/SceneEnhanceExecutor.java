@@ -1,7 +1,7 @@
 package com.tech.recommend.domain.biz.scene.executor;
 
 import com.tech.recommend.common.configuration.config.EnhanceConfig;
-import com.tech.recommend.common.configuration.factory.ConfigurationFactory;
+import com.tech.recommend.common.configuration.factory.ConfigurationLoader;
 import com.tech.recommend.domain.api.biz.IEnhanceService;
 import com.tech.recommend.domain.api.context.EnhanceContext;
 import com.tech.recommend.domain.api.context.SceneContext;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class SceneEnhanceExecutor {
 
     @Resource
-    private ConfigurationFactory configurationFactory;
+    private ConfigurationLoader configurationLoader;
 
     @Resource
     private IEnhanceService enhanceService;
@@ -35,7 +35,7 @@ public class SceneEnhanceExecutor {
     public void enhance(SceneContext sceneContext) { 
         
         // 增强配置获取
-        List<EnhanceConfig> sceneEnhanceConfigs = configurationFactory.getSceneEnhanceConfigs(sceneContext.getSceneId());
+        List<EnhanceConfig> sceneEnhanceConfigs = configurationLoader.getSceneEnhanceConfigs(sceneContext.getSceneId());
         if (CollectionUtils.isEmpty(sceneEnhanceConfigs)) {
             return;
         }

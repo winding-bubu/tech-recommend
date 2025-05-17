@@ -1,7 +1,7 @@
 package com.tech.recommend.domain.biz.channel.executor;
 
 import com.tech.recommend.common.configuration.config.GenericConfig;
-import com.tech.recommend.common.configuration.factory.ConfigurationFactory;
+import com.tech.recommend.common.configuration.factory.ConfigurationLoader;
 import com.tech.recommend.domain.api.biz.IGenericService;
 import com.tech.recommend.domain.api.context.GenericContext;
 import com.tech.recommend.domain.api.model.generic.GenericResponse;
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public class ChannelGenericExecutor {
     
     @Resource
-    private ConfigurationFactory configurationFactory;
+    private ConfigurationLoader configurationLoader;
 
     @Resource
     private IGenericService genericService;
@@ -40,7 +40,7 @@ public class ChannelGenericExecutor {
 
         // 泛化配置获取
         List<GenericConfig> channelGenericConfigs =
-            configurationFactory.getChannelGenericConfigs(context.getSceneId(), context.getChannelId());
+            configurationLoader.getChannelGenericConfigs(context.getSceneId(), context.getChannelId());
         if (CollectionUtils.isEmpty(channelGenericConfigs)) {
             return;
         }

@@ -1,8 +1,10 @@
 package com.tech.recommend.domain.api.context;
 
+import com.tech.recommend.facade.model.ResultItem;
 import lombok.Data;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,6 +50,11 @@ public class TemplateContext {
      * 召回基础参数
      */
     private Map<String, Object> params = new HashMap<>();
+
+    /**
+     * 召回结果
+     */
+    private List<ResultItem> resultItems;
 
     /**
      * 参数弱拷贝

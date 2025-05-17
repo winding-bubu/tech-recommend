@@ -1,7 +1,7 @@
 package com.tech.recommend.domain.biz.channel.executor;
 
 import com.tech.recommend.common.configuration.config.EnhanceConfig;
-import com.tech.recommend.common.configuration.factory.ConfigurationFactory;
+import com.tech.recommend.common.configuration.factory.ConfigurationLoader;
 import com.tech.recommend.domain.api.biz.IEnhanceService;
 import com.tech.recommend.domain.api.context.ChannelContext;
 import com.tech.recommend.domain.api.context.EnhanceContext;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class ChannelEnhanceExecutor {
 
     @Resource
-    private ConfigurationFactory configurationFactory;
+    private ConfigurationLoader configurationLoader;
 
     @Resource
     private IEnhanceService enhanceService;
@@ -36,7 +36,7 @@ public class ChannelEnhanceExecutor {
         
         // 增强配置获取
         List<EnhanceConfig> channelEnhanceConfigs =
-            configurationFactory.getChannelEnhanceConfigs(context.getSceneId(), context.getChannelId());
+            configurationLoader.getChannelEnhanceConfigs(context.getSceneId(), context.getChannelId());
         if (CollectionUtils.isEmpty(channelEnhanceConfigs)) {
             return;
         }

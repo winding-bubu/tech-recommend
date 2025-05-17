@@ -1,7 +1,7 @@
 package com.tech.recommend.domain.biz.scene.executor;
 
 import com.tech.recommend.common.configuration.config.ChannelConfig;
-import com.tech.recommend.common.configuration.factory.ConfigurationFactory;
+import com.tech.recommend.common.configuration.factory.ConfigurationLoader;
 import com.tech.recommend.common.constant.ErrorCodeEnum;
 import com.tech.recommend.common.exception.TechRecommendException;
 import com.tech.recommend.common.thread.pool.DynamicThreadPool;
@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 public class SceneRecallExecutor {
 
     @Resource
-    private ConfigurationFactory configurationFactory;
+    private ConfigurationLoader configurationLoader;
     
     @Resource
     private IChannelRecallService channelRecallService;
@@ -43,7 +43,7 @@ public class SceneRecallExecutor {
     public void recall(SceneContext sceneContext) {
 
         // 召回配置获取
-        List<ChannelConfig> channelConfigs = configurationFactory.getChannelConfigs(sceneContext.getSceneId());
+        List<ChannelConfig> channelConfigs = configurationLoader.getChannelConfigs(sceneContext.getSceneId());
         if (CollectionUtils.isEmpty(channelConfigs)) {
             throw new TechRecommendException(ErrorCodeEnum.CHANNEL_LACK);
         }
@@ -52,7 +52,7 @@ public class SceneRecallExecutor {
 
         // 多线程召回执行
         Map<String, CompletableFuture<List<ResultItem>>> futures = new HashMap<>();
-        DynamicThreadPool sceneThreadPool = configurationFactory.getSceneThreadPool(sceneContext.getSceneId());
+        DynamicThreadPool sceneThreadPool = configurationLoader.getSceneThreadPool(sceneContext.getSceneId());
         for (ChannelConfig channelConfig : channelConfigs) {
             // 构建上下文
             ChannelContext context = new ChannelContext();

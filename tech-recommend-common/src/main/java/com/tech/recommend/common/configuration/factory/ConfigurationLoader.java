@@ -20,7 +20,7 @@ import java.util.*;
  * @since 2025/05/03
  */
 @Component
-public class ConfigurationFactory {
+public class ConfigurationLoader {
 
     /**
      * bean注册时注入 [sceneId:场景配置]
@@ -292,6 +292,30 @@ public class ConfigurationFactory {
                 .filter(genericConfig -> genericConfig.getGenericId().equals(genericId))
                 .findFirst()
                 .orElse(null);
+    }
+
+    /**
+     * 获取模板对应的索引配置
+     * 
+     * @param sceneId 场景ID
+     * @param templateId 模板ID
+     * @return 索引配置
+     */
+    public IndexConfig getTemplateIndexConfig(String sceneId, String templateId) {
+        this.configCheck(sceneId);
+        return configurationInfos.get(sceneId).getIndexConfigs().get(templateId);
+    }
+
+    /**
+     * 获取模板对应的dsl配置
+     * 
+     * @param sceneId 场景ID
+     * @param templateId 模板ID
+     * @return dsl配置
+     */
+    public DslConfig getTemplateDslConfig(String sceneId, String templateId) {
+        this.configCheck(sceneId);
+        return configurationInfos.get(sceneId).getDslConfigs().get(templateId);
     }
 
     private void configCheck(String sceneId) {

@@ -1,7 +1,7 @@
 package com.tech.recommend.service.generic.impl;
 
 import com.tech.recommend.common.configuration.config.GenericConfig;
-import com.tech.recommend.common.configuration.factory.ConfigurationFactory;
+import com.tech.recommend.common.configuration.factory.ConfigurationLoader;
 import com.tech.recommend.domain.api.context.GenericContext;
 import com.tech.recommend.domain.api.service.IGenericProcessor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,13 +20,13 @@ import java.util.Map;
 public abstract class AbstractGenericProcessor implements IGenericProcessor {
 
     @Resource
-    private ConfigurationFactory configurationFactory;
+    private ConfigurationLoader configurationLoader;
     
     @Override
     public Map<String, Object> doGeneric(GenericContext genericContext) {
         try {
             // 获取当前泛化配置
-            GenericConfig genericConfig = configurationFactory.getGenericConfig(genericContext.getSceneId(), genericId());
+            GenericConfig genericConfig = configurationLoader.getGenericConfig(genericContext.getSceneId(), genericId());
             // 执行泛化
             return this.execute(genericConfig, genericContext);
         } catch (Exception e) {

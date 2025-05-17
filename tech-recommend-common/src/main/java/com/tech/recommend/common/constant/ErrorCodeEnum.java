@@ -17,7 +17,13 @@ public enum ErrorCodeEnum {
 
     TEMPLATE_LACK(1003, "模板配置不存在，请检查！"),
 
-    ES_ERROR(1004, "es服务异常"),
+    INDEX_LACK(1004, "索引配置不存在，请检查！"),
+
+    DSL_LACK(1005, "dsl配置不存在，请检查！"),
+
+    DSL_BUILD_ERROR(1006, "dsl构建失败"),
+
+    ES_ERROR(1009, "es服务异常"),
 
     SYSTEM_ERROR(1010, "系统异常"),
 
