@@ -1,10 +1,12 @@
 [
   {
     "id": "exampleDsl1",
-    "dsl": {"query":{"match":{"id":"#id"}}}
+    "dsl": {"query":{"match":{"id":"#id"}}},
+    "type": "forward"
   },
   {
     "id": "exampleDsl2",
-    "dsl": {"query":{"match":{"id":"#uid"}}}
+    "dsl": {"query":{"match":{"id":"#uid"}}},
+    "type": "forward"
   }
 ]

@@ -21,4 +21,9 @@ public class DslConfig {
      */
     private String dsl;
 
+    /**
+     * dsl构建类型
+     */
+    private String type;
+
 }

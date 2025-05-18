@@ -65,15 +65,9 @@ public class TemplateRecallServiceImpl implements ITemplateRecallService {
 
     private void esQuery(IndexConfig indexConfig, TemplateContext templateContext) {
 
-        // 获取dsl配置
-        DslConfig dslConfig = configurationLoader.getTemplateDslConfig(templateContext.getSceneId(), templateContext.getTemplateId());
-        if (Objects.isNull(dslConfig) || StringUtils.isBlank(dslConfig.getDsl())) {
-            throw new TechRecommendException(ErrorCodeEnum.DSL_LACK);
-        }
-
         // 构建dsl
-        String dsl = dslBuildExecutor.buildDsl(dslConfig.getDsl(), templateContext);
-        if (StringUtils.isNotBlank(dsl)) {
+        String dsl = dslBuildExecutor.buildDsl(templateContext);
+        if (StringUtils.isBlank(dsl)) {
             throw new TechRecommendException(ErrorCodeEnum.DSL_BUILD_ERROR);
         }
 
