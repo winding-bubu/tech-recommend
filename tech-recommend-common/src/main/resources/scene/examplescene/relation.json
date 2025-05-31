@@ -1,22 +1,22 @@
 [
   {
     "relationType": "scene_channel",
-    "relationFrom": "exampleScene",
+    "relationFrom": "homeRecommendation",
     "relationTo": "exampleChannel1"
   },
   {
     "relationType": "scene_channel",
-    "relationFrom": "exampleScene",
+    "relationFrom": "homeRecommendation",
     "relationTo": "exampleChannel2"
   },
   {
     "relationType": "scene_generic",
-    "relationFrom": "exampleScene",
+    "relationFrom": "homeRecommendation",
     "relationTo": "exampleGeneric1"
   },
   {
     "relationType": "scene_enhance",
-    "relationFrom": "exampleScene",
+    "relationFrom": "homeRecommendation",
     "relationTo": "exampleEnhance1"
   },
   {
@@ -31,8 +31,8 @@
   },
   {
     "relationType": "scene_pool",
-    "relationFrom": "exampleScene",
-    "relationTo": "exampleScenePool"
+    "relationFrom": "homeRecommendation",
+    "relationTo": "homeRecommendationPool"
   },
   {
     "relationType": "channel_template",

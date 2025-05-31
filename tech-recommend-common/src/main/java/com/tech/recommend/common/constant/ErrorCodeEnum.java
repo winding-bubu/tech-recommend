@@ -23,6 +23,8 @@ public enum ErrorCodeEnum {
 
     DSL_BUILD_ERROR(1006, "dsl构建失败"),
 
+    RULE_PARSE_ERROR(1007, "规则解析异常"),
+
     ES_ERROR(1009, "es服务异常"),
 
     SYSTEM_ERROR(1010, "系统异常"),

@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Component
-public class BackwardDslBuildProcessor implements IDslBuildProcessor {
+public class BackwardDslBuilder implements IDslBuildProcessor {
 
     @Override
     public DslBuildResponse build(DslBuildRequest dslBuildRequest) {
@@ -26,7 +26,7 @@ public class BackwardDslBuildProcessor implements IDslBuildProcessor {
 
     @Override
     public String type() {
-        return DslBuildEnum.FROWARD.getCode();
+        return DslBuildEnum.BACKWARD.getCode();
     }
 
 }

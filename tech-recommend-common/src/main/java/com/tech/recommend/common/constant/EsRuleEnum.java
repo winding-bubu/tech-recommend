@@ -17,7 +17,9 @@ public enum EsRuleEnum {
 
     MUST_NOT("must_not"),
 
-    SHOULD("should"),
+    TERMS("terms"),
+
+    TERM("term"),
 
     ;
 

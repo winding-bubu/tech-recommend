@@ -1,5 +1,5 @@
 {
-  "sceneId": "exampleScene",
+  "sceneId": "homeRecommendation",
   "recallNum": 1000,
-  "description": "示例场景配置"
+  "description": "首页推荐场景"
 }
