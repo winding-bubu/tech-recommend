@@ -55,8 +55,11 @@ public class ForwardDslBuilder implements IDslBuildProcessor {
 
     private String buildDsl(String dslTemplate, Map<String, Object> params) {
         JSONObject root = JSON.parseObject(dslTemplate);
-        JSONArray filter = Optional.ofNullable(root).map(item -> item.getJSONObject("query")).map(item -> item.getJSONObject("bool"))
-            .map(item -> item.getJSONArray("filter")).orElse(null);
+        JSONArray filter = Optional.ofNullable(root)
+                .map(item -> item.getJSONObject("query"))
+                .map(item -> item.getJSONObject("bool"))
+                .map(item -> item.getJSONArray("filter"))
+                .orElse(null);
         if (CollectionUtils.isEmpty(filter)) {
             return null;
         }

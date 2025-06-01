@@ -53,5 +53,15 @@
     "relationType": "template_index",
     "relationFrom": "exampleTemplate2",
     "relationTo": "my-index"
+  },
+  {
+    "relationType": "template_dsl",
+    "relationFrom": "exampleTemplate1",
+    "relationTo": "exampleDsl1"
+  },
+  {
+    "relationType": "template_dsl",
+    "relationFrom": "exampleTemplate2",
+    "relationTo": "exampleDsl2"
   }
 ]

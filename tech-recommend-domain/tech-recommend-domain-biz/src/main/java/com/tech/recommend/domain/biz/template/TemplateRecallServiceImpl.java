@@ -1,5 +1,6 @@
 package com.tech.recommend.domain.biz.template;
 
+import com.alibaba.fastjson2.JSON;
 import com.tech.recommend.common.configuration.config.DslConfig;
 import com.tech.recommend.common.configuration.config.IndexConfig;
 import com.tech.recommend.common.configuration.factory.ConfigurationLoader;
@@ -68,6 +69,7 @@ public class TemplateRecallServiceImpl implements ITemplateRecallService {
         // 构建dsl
         String dsl = dslBuildExecutor.buildDsl(templateContext);
         if (StringUtils.isBlank(dsl)) {
+            log.error(JSON.toJSONString(templateContext));
             throw new TechRecommendException(ErrorCodeEnum.DSL_BUILD_ERROR);
         }
 

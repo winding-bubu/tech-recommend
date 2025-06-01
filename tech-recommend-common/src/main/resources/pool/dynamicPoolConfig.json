@@ -8,7 +8,7 @@
     "description": "默认线程池"
   },
   {
-    "poolId": "exampleScenePool",
+    "poolId": "homeRecommendationPool",
     "corePoolSize": 20,
     "maxPoolSize": 50,
     "workQueueSize": 100,

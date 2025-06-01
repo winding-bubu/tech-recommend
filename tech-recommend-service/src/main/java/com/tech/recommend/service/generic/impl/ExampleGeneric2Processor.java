@@ -1,8 +1,8 @@
 package com.tech.recommend.service.generic.impl;
 
-import java.util.Collections;
 import java.util.Map;
 
+import com.google.common.collect.Maps;
 import org.springframework.stereotype.Component;
 
 import com.tech.recommend.common.configuration.config.GenericConfig;
@@ -19,7 +19,9 @@ public class ExampleGeneric2Processor extends AbstractGenericProcessor {
 
     @Override
     protected Map<String, Object> execute(GenericConfig genericConfig, GenericContext genericContext) {
-        return Collections.emptyMap();
+        Map<String, Object> map = Maps.newHashMap();
+        map.put("uid", 1000000010);
+        return map;
     }
 
     @Override

@@ -30,7 +30,7 @@ public class SceneRecallTest {
         // 构建上下文
         SceneContext sceneContext = new SceneContext();
         sceneContext.setRequestId(UUID.randomUUID().toString());
-        sceneContext.setSceneId("exampleScene");
+        sceneContext.setSceneId("homeRecommendation");
         sceneContext.setParams(new HashMap<>());
 
         // 执行召回

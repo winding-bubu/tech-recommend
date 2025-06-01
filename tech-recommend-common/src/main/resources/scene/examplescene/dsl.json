@@ -31,8 +31,14 @@
     "id": "exampleDsl2",
     "dsl": {
       "query": {
-        "match": {
-          "id": "#uid"
+        "bool": {
+          "filter": [
+            {
+              "term": {
+                "id": "#uid"
+              }
+            }
+          ]
         }
       }
     },

@@ -236,7 +236,7 @@ public class ConfigParserUtil {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 
         try {
-            Resource[] resources = resolver.getResources(ENHANCE_JSON_PATTERN);
+            Resource[] resources = resolver.getResources(DSL_JSON_PATTERN);
 
             for (Resource resource : resources) {
                 // 获取相对路径

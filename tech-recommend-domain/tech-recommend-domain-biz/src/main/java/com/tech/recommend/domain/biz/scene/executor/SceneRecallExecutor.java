@@ -92,6 +92,9 @@ public class SceneRecallExecutor {
         Map<String, ResultItem> resultItemMap = new LinkedHashMap<>();
         for (Map.Entry<String, List<ResultItem>> entry : resultItemsMap.entrySet()) {
             List<ResultItem> channelResults = entry.getValue();
+            if (CollectionUtils.isEmpty(channelResults)) {
+                continue;
+            }
             for (ResultItem resultItem : channelResults) {
                 if (resultItemMap.containsKey(resultItem.getItemId())) {
                     // 仅合并召回路标识
