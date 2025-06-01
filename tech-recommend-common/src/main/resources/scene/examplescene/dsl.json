@@ -1,12 +1,41 @@
 [
   {
     "id": "exampleDsl1",
-    "dsl": {"query":{"match":{"id":"#id"}}},
+    "dsl": {
+      "query": {
+        "bool": {
+          "filter": [
+            {
+              "term": {
+                "status": "#status"
+              }
+            },
+            {
+              "bool": {
+                "must": [
+                  {
+                    "terms": {
+                      "department": "#department"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
     "type": "forward"
   },
   {
     "id": "exampleDsl2",
-    "dsl": {"query":{"match":{"id":"#uid"}}},
+    "dsl": {
+      "query": {
+        "match": {
+          "id": "#uid"
+        }
+      }
+    },
     "type": "forward"
   }
 ]

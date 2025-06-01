@@ -1,11 +1,10 @@
 package com.tech.recommend.service.dsl.rule.parser;
 
 import com.alibaba.fastjson2.JSONObject;
-import com.tech.recommend.common.constant.EsRuleEnum;
-import com.tech.recommend.service.dsl.rule.RuleLoader;
+import com.tech.recommend.common.constant.RuleEnum;
+import com.tech.recommend.service.dsl.rule.loader.GroupRuleLoader;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.Map;
 import java.util.Objects;
 
@@ -18,8 +17,9 @@ import java.util.Objects;
 @Component
 public class BoolRule extends AbstractRule {
 
-    @Resource
-    private RuleLoader ruleLoader;
+    public BoolRule(GroupRuleLoader groupRuleLoader) {
+        this.ruleLoader = groupRuleLoader;
+    }
 
     @Override
     protected Object doParse(Object clause, Map<String, Object> params) {
@@ -40,7 +40,7 @@ public class BoolRule extends AbstractRule {
 
     @Override
     public String getRuleName() {
-        return EsRuleEnum.BOOL.getRule();
+        return RuleEnum.BOOL.getRule();
     }
 
 }

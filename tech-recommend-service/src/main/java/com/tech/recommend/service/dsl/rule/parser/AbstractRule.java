@@ -4,15 +4,12 @@ import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.tech.recommend.common.constant.ErrorCodeEnum;
 import com.tech.recommend.common.exception.TechRecommendException;
-import com.tech.recommend.common.util.TypeUtil;
 import com.tech.recommend.service.dsl.rule.IRule;
-import com.tech.recommend.service.dsl.rule.RuleLoader;
+import com.tech.recommend.service.dsl.rule.IRuleLoader;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
-import org.apache.commons.lang3.StringUtils;
 
-import javax.annotation.Resource;
 import java.util.Map;
 import java.util.Objects;
 
@@ -24,9 +21,8 @@ import java.util.Objects;
  */
 @Slf4j
 public abstract class AbstractRule implements IRule {
-    
-    @Resource
-    protected RuleLoader ruleLoader;
+
+    protected IRuleLoader ruleLoader;
     
     @Override
     public Object parse(Object clause, Map<String, Object> params) {

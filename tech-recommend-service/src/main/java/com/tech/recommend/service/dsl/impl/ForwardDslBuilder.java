@@ -8,7 +8,7 @@ import com.tech.recommend.common.constant.DslBuildEnum;
 import com.tech.recommend.domain.api.model.dsl.DslBuildRequest;
 import com.tech.recommend.domain.api.model.dsl.DslBuildResponse;
 import com.tech.recommend.domain.api.service.IDslBuildProcessor;
-import com.tech.recommend.service.dsl.rule.RuleLoader;
+import com.tech.recommend.service.dsl.rule.IRuleLoader;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -29,8 +29,8 @@ import java.util.Optional;
 @Component
 public class ForwardDslBuilder implements IDslBuildProcessor {
 
-    @Resource
-    private RuleLoader ruleLoader;
+    @Resource(name = "parentRuleLoader")
+    private IRuleLoader parentRuleLoader;
 
     @Override
     public DslBuildResponse build(DslBuildRequest dslBuildRequest) {
@@ -70,7 +70,7 @@ public class ForwardDslBuilder implements IDslBuildProcessor {
             JSONObject clause = (JSONObject)item;
             JSONObject parsedClause = (JSONObject)item;
             for (Map.Entry<String, Object> entry : clause.entrySet()) {
-                Object parsedRuleClause = ruleLoader.load(entry.getKey(), entry.getValue(), params);
+                Object parsedRuleClause = parentRuleLoader.load(entry.getKey(), entry.getValue(), params);
                 if (Objects.nonNull(parsedRuleClause)) {
                     parsedClause.put(entry.getKey(), parsedRuleClause);
                     parsedFilter.add(parsedRuleClause);
@@ -80,7 +80,7 @@ public class ForwardDslBuilder implements IDslBuildProcessor {
         if (CollectionUtils.isEmpty(parsedFilter)) {
             return null;
         }
-
+        
         // 构建解析后的dsl
         return this.buildParsedRoot(parsedFilter).toString();
     }
@@ -96,6 +96,7 @@ public class ForwardDslBuilder implements IDslBuildProcessor {
         JSONObject root = new JSONObject();
         root.put("query", bool);
 
+        log.info("dsl print: {}", JSON.toJSONString(root));
         return root;
     }
 

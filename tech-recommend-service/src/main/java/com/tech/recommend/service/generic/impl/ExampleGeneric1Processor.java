@@ -1,10 +1,11 @@
 package com.tech.recommend.service.generic.impl;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.tech.recommend.common.configuration.config.GenericConfig;
 import com.tech.recommend.domain.api.context.GenericContext;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -18,7 +19,10 @@ public class ExampleGeneric1Processor extends AbstractGenericProcessor {
 
     @Override
     protected Map<String, Object> execute(GenericConfig genericConfig, GenericContext genericContext) {
-        return Collections.emptyMap();
+        Map<String, Object> map = Maps.newHashMap();
+        map.put("department", Lists.newArrayList("devops", "sre"));
+        map.put("status", 1);
+        return map;
     }
 
     @Override

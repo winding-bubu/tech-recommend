@@ -1,7 +1,5 @@
 package com.tech.recommend.service.dsl.rule;
 
-import com.alibaba.fastjson2.JSONObject;
-
 import java.util.Map;
 
 /**
@@ -24,7 +22,7 @@ public interface IRule {
     /**
      * rule 名称获取
      * 
-     * @return rule
+     * @return ruleName
      */
     String getRuleName();
 

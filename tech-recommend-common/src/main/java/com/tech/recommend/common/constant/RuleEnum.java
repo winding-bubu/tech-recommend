@@ -9,7 +9,7 @@ import lombok.Getter;
  * @since 2025/05/20
  */
 @Getter
-public enum EsRuleEnum {
+public enum RuleEnum {
 
     BOOL("bool"),
 
@@ -25,7 +25,7 @@ public enum EsRuleEnum {
 
     private final String rule;
 
-    EsRuleEnum(String rule) {
+    RuleEnum(String rule) {
         this.rule = rule;
     }
 
