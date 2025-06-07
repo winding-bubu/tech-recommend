@@ -21,12 +21,12 @@
   },
   {
     "relationType": "channel_generic",
-    "relationFrom": "exampleChannel1",
+    "relationFrom": "exampleChannel2",
     "relationTo": "exampleGeneric2"
   },
   {
     "relationType": "channel_enhance",
-    "relationFrom": "exampleChannel1",
+    "relationFrom": "exampleChannel2",
     "relationTo": "exampleEnhance2"
   },
   {

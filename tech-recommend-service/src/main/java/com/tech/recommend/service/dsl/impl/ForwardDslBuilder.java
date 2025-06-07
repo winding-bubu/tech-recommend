@@ -76,7 +76,7 @@ public class ForwardDslBuilder implements IDslBuildProcessor {
                 Object parsedRuleClause = parentRuleLoader.load(entry.getKey(), entry.getValue(), params);
                 if (Objects.nonNull(parsedRuleClause)) {
                     parsedClause.put(entry.getKey(), parsedRuleClause);
-                    parsedFilter.add(parsedRuleClause);
+                    parsedFilter.add(parsedClause);
                 }
             }
         }
