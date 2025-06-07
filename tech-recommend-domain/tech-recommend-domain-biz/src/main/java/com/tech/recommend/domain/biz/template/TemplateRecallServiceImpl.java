@@ -1,7 +1,6 @@
 package com.tech.recommend.domain.biz.template;
 
 import com.alibaba.fastjson2.JSON;
-import com.tech.recommend.common.configuration.config.DslConfig;
 import com.tech.recommend.common.configuration.config.IndexConfig;
 import com.tech.recommend.common.configuration.factory.ConfigurationLoader;
 import com.tech.recommend.common.constant.ErrorCodeEnum;
