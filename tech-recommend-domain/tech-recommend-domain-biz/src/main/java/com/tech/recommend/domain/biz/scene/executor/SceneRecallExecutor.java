@@ -16,7 +16,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 
 /**
@@ -31,9 +33,14 @@ public class SceneRecallExecutor {
 
     @Resource
     private ConfigurationLoader configurationLoader;
-    
+
     @Resource
     private IChannelRecallService channelRecallService;
+
+    /**
+     * 渠道召回兜底超时时间
+     */
+    private static final int CHANNEL_DEFAULT_TIMEOUT = 200;
 
     /**
      * 场景召回执行
@@ -47,8 +54,8 @@ public class SceneRecallExecutor {
         if (CollectionUtils.isEmpty(channelConfigs)) {
             throw new TechRecommendException(ErrorCodeEnum.CHANNEL_LACK);
         }
-        Map<String, ChannelConfig> channelConfigMap = channelConfigs.stream()
-                .collect(Collectors.toMap(ChannelConfig::getChannelId, channelConfig -> channelConfig, (a, b) -> b));
+        Map<String, ChannelConfig> channelConfigMap =
+            channelConfigs.stream().collect(Collectors.toMap(ChannelConfig::getChannelId, channelConfig -> channelConfig));
 
         // 多线程召回执行
         Map<String, CompletableFuture<List<ResultItem>>> futures = new HashMap<>();
@@ -69,22 +76,27 @@ public class SceneRecallExecutor {
             }, sceneThreadPool.getExecutor());
             futures.put(channelConfig.getChannelId(), future);
         }
-        
+
         // 获取召回结果
-        Map<String, List<ResultItem>> resultItemsMap = new HashMap<>();
+        Map<String, List<ResultItem>> resultItemsMap = new LinkedHashMap<>();
         for (Map.Entry<String, CompletableFuture<List<ResultItem>>> entry : futures.entrySet()) {
             String channelId = entry.getKey();
             CompletableFuture<List<ResultItem>> future = entry.getValue();
             ChannelConfig channelConfig = channelConfigMap.get(channelId);
             // 根据设定超时时间进行处理
-            int timeout = Objects.isNull(channelConfig.getTimeout()) ? 200 : channelConfig.getTimeout();
+            int timeout = Objects.isNull(channelConfig.getTimeout()) ? CHANNEL_DEFAULT_TIMEOUT : channelConfig.getTimeout();
             try {
                 List<ResultItem> resultItems = future.get(timeout, TimeUnit.MILLISECONDS);
                 resultItemsMap.put(channelId, resultItems);
             } catch (InterruptedException e) {
-                log.error("scene recall interrupted", e);
-            } catch (Exception e) {
-                log.error("scene recall occur error", e);
+                log.error("channel:{} recall interrupted", channelId, e);
+                Thread.currentThread().interrupt();
+                future.cancel(true);
+            } catch (TimeoutException e) {
+                log.error("channel:{} recall timeout in {} ms", channelId, timeout, e);
+                future.cancel(true);
+            } catch (ExecutionException e) {
+                log.error("channel:{} recall occur error", channelId, e);
             }
         }
 
@@ -97,8 +109,8 @@ public class SceneRecallExecutor {
             }
             for (ResultItem resultItem : channelResults) {
                 if (resultItemMap.containsKey(resultItem.getItemId())) {
-                    // 仅合并召回路标识
-                    resultItemMap.get(resultItem.getItemId()).getRecallTags().addAll(resultItem.getRecallTags());
+                    // 货源合并处理
+                    this.resultItemsMerge(resultItemMap.get(resultItem.getItemId()), resultItem);
                 } else {
                     resultItemMap.put(resultItem.getItemId(), resultItem);
                 }
@@ -106,6 +118,13 @@ public class SceneRecallExecutor {
         }
 
         sceneContext.setResultItems(new ArrayList<>(resultItemMap.values()));
+    }
+
+    private void resultItemsMerge(ResultItem existItem, ResultItem addedItem) {
+
+        // 召回路标识合并
+        existItem.getRecallTags().addAll(addedItem.getRecallTags());
+
     }
 
 }
