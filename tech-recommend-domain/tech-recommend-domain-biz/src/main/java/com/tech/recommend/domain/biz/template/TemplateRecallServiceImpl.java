@@ -1,7 +1,6 @@
 package com.tech.recommend.domain.biz.template;
 
 import com.alibaba.fastjson2.JSON;
-import com.tech.recommend.common.configuration.config.DslConfig;
 import com.tech.recommend.common.configuration.config.IndexConfig;
 import com.tech.recommend.common.configuration.factory.ConfigurationLoader;
 import com.tech.recommend.common.constant.ErrorCodeEnum;
@@ -16,6 +15,7 @@ import com.tech.recommend.domain.api.biz.ITemplateRecallService;
 import com.tech.recommend.domain.biz.template.executor.DslBuildExecutor;
 import com.tech.recommend.facade.model.ResultItem;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +57,8 @@ public class TemplateRecallServiceImpl implements ITemplateRecallService {
             } else {
                 this.rpcQuery(indexConfig, templateContext);
             }
+            // 后置处理
+            this.postResolveResults(templateContext.getResultItems(), templateContext);
         } catch (TechRecommendException te) {
             log.error("template recall custom error", te);
         } catch (Exception e) {
@@ -102,6 +104,19 @@ public class TemplateRecallServiceImpl implements ITemplateRecallService {
             List<ResultItem> resultItems = (List<ResultItem>)resourceResponse.getResourceResult();
             templateContext.setResultItems(resultItems);
         }
+    }
+
+    private void postResolveResults(List<ResultItem> resultItems, TemplateContext templateContext) {
+
+        if (CollectionUtils.isEmpty(resultItems)) {
+            return;
+        }
+
+        // 遍历货源处理
+        resultItems.forEach(resultItem -> {
+            // 添加召回路标识
+            resultItem.getRecallTags().add(templateContext.getChannelId());
+        });
     }
 
 }

@@ -36,7 +36,9 @@ public class ForwardDslBuilder implements IDslBuildProcessor {
     public DslBuildResponse build(DslBuildRequest dslBuildRequest) {
 
         // 获取dsl模板
-        String dslTemplate = Optional.ofNullable(dslBuildRequest.getDslConfig()).map(DslConfig::getDsl).orElse(null);
+        String dslTemplate = Optional.ofNullable(dslBuildRequest.getDslConfig())
+                .map(DslConfig::getDsl)
+                .orElse(null);
         if (StringUtils.isBlank(dslTemplate)) {
             return null;
         }

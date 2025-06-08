@@ -11,7 +11,9 @@ import lombok.Getter;
 @Getter
 public enum ErrorCodeEnum {
 
-    CONFIG_NOT_EXIST(1001, "配置不存在"),
+    CONFIG_NOT_EXIST(1000, "配置不存在"),
+
+    SCENE_LACK(1001, "场景配置不存在，请检查！"),
 
     CHANNEL_LACK(1002, "渠道配置不存在，请检查！"),
 
