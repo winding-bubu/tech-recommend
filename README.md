@@ -267,13 +267,6 @@ public class CustomTemplateResolver implements TemplateResolver {
 }
 ```
 
-## 性能指标
-| 场景 | QPS | 平均延迟 | 召回量 |
-|------|-----|---------|-------|
-| 首页 | 1200 | 45ms | 50 |
-| 详情页 | 800 | 65ms | 20 |
-| 购物车 | 600 | 75ms | 30 |
-
 ## 贡献指南
 欢迎提交Pull Request：
 1. Fork 本仓库
