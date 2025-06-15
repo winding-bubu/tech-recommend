@@ -1,6 +1,8 @@
 <h1 align="center">轻量化召回引擎实现</h1>
 
-<h5 align="center">![Static Badge](https://img.shields.io/badge/tech_recommend-recall_engine-blue)</h5>
+<p align="center">
+  <img src="https://img.shields.io/badge/tech_recommend-recall_engine-blue" alt="Tech Recommend: Recall Engine">
+</p>
 
 ## 概述
 
