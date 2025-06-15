@@ -1,12 +1,14 @@
 <h1 align="center">轻量化召回引擎实现</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/tech_recommend-recall_engine-blue" alt="Tech Recommend: Recall Engine">
+  <img src="https://img.shields.io/badge/tech_recommend-recall_engine-blue" title="技术推荐系统">
+  <img src="https://img.shields.io/badge/tech-v1.0.0-brightgreen" title="当前版本" style="margin:0 10px;">
+  <img src="https://img.shields.io/badge/license-MIT-yellow" title="MIT许可协议">
 </p>
 
 ## 概述
 
-轻量化召回引擎实现，自定义召回流程配置，支持es、rpc等物料召回模式
+轻量化召回引擎实现，采用分层架构设计，核心包含动态配置中心和四级召回流程：动态配置中心统一管理场景、渠道、模板、索引等配置信息，支持热更新和本地缓存；召回流程依次执行场景层路由与增强、渠道层多路并发召回、模板层DSL构建与查询、索引层数据检索，通过动态线程池实现资源隔离，最终实现高效可扩展的推荐召回服务
 
 ## 整体架构
 
