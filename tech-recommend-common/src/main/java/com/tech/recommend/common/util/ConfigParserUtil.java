@@ -49,7 +49,7 @@ public class ConfigParserUtil {
      * @return 线程池配置集合
      */
     public List<ThreadPoolConfig> getThreadPoolConfigs() {
-        return this.parseJsonFileArray("pool/dynamicPoolConfig.json", ThreadPoolConfig.class);
+        return this.parseJsonFileArray("pool/pool.json", ThreadPoolConfig.class);
     }
 
     /**
