@@ -20,7 +20,7 @@ public class TermsRule extends AbstractRule {
         if (super.notJsonObject(clause)) {
             return null;
         }
-        return super.parseObjectClause((JSONObject)clause, params);
+        return super.parseJsonObjectClause((JSONObject)clause, params);
     }
 
     @Override

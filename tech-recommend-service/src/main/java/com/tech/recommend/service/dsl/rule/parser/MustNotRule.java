@@ -25,7 +25,7 @@ public class MustNotRule extends AbstractRule {
         if (super.notJsonArray(clause)) {
             return null;
         }
-        return super.parseArrayClause((JSONArray)clause, params);
+        return super.parseJsonArrayClause((JSONArray)clause, params);
     }
 
     @Override

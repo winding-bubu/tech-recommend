@@ -1,20 +1,19 @@
 package com.tech.recommend.service.dsl.rule.parser;
 
-import java.util.Map;
-
-import org.springframework.stereotype.Component;
-
 import com.alibaba.fastjson2.JSONObject;
 import com.tech.recommend.common.constant.RuleEnum;
+import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 /**
- * 规则【term】
+ * 规则【exists】
  *
  * @author winding bubu
- * @since 2025/05/28
+ * @since 2025/06/21
  */
 @Component
-public class TermRule extends AbstractRule {
+public class ExistsRule extends AbstractRule {
 
     @Override
     protected Object doParse(Object clause, Map<String, Object> params) {
@@ -26,7 +25,7 @@ public class TermRule extends AbstractRule {
 
     @Override
     public String getRuleName() {
-        return RuleEnum.TERM.getRule();
+        return RuleEnum.EXISTS.getRule();
     }
 
 }

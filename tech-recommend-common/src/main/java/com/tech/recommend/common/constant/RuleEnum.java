@@ -21,6 +21,8 @@ public enum RuleEnum {
 
     TERM("term"),
 
+    EXISTS("exists"),
+
     ;
 
     private final String rule;
