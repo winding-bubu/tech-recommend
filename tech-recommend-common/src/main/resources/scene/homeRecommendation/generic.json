@@ -1,10 +1,18 @@
 [
   {
-    "genericId": "exampleGeneric1",
-    "description": "泛化示例1"
+    "genericId": "statusGeneric",
+    "description": "用户状态泛化"
   },
   {
-    "genericId": "exampleGeneric2",
-    "description": "泛化示例2"
+    "genericId": "genderGeneric",
+    "description": "性别泛化"
+  },
+  {
+    "genericId": "ageGeneric",
+    "description": "年龄泛化"
+  },
+  {
+    "genericId": "userPreferGeneric",
+    "description": "用户偏好泛化"
   }
 ]

@@ -13,6 +13,6 @@
     "maxPoolSize": 50,
     "workQueueSize": 100,
     "rejectPolicy": 1,
-    "description": "示例场景1线程池"
+    "description": "首页推荐场景线程池"
   }
 ]

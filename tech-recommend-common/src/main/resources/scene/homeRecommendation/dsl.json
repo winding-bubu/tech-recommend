@@ -1,6 +1,6 @@
 [
   {
-    "id": "exampleDsl1",
+    "id": "home_rec_accurate_dsl",
     "dsl": {
       "query": {
         "bool": {
@@ -11,11 +11,26 @@
               }
             },
             {
+              "terms": {
+                "gender": "#gender"
+              }
+            },
+            {
+              "range": {
+                "age": "#ageRange"
+              }
+            },
+            {
               "bool": {
                 "must": [
                   {
                     "terms": {
-                      "department": "#department"
+                      "userTags": "#userTags"
+                    }
+                  },
+                  {
+                    "terms": {
+                      "preference": "#preference"
                     }
                   }
                 ]
@@ -23,24 +38,13 @@
             }
           ]
         }
-      }
-    },
-    "type": "forward"
-  },
-  {
-    "id": "exampleDsl2",
-    "dsl": {
-      "query": {
-        "bool": {
-          "filter": [
-            {
-              "term": {
-                "id": "#uid"
-              }
-            }
-          ]
-        }
-      }
+      },
+      "from": 0,
+      "size": 50,
+      "source": [
+        "itemId",
+        "updateTime"
+      ]
     },
     "type": "forward"
   }

@@ -1,14 +1,8 @@
 [
   {
-    "channelId": "exampleChannel1",
+    "channelId": "home_rec_accurate",
     "recallNum": 200,
     "timeout": 200,
-    "description": "示例渠道1"
-  },
-  {
-    "channelId": "exampleChannel2",
-    "recallNum": 200,
-    "timeout": 200,
-    "description": "示例渠道2"
+    "description": "首页推荐精准召回路"
   }
 ]

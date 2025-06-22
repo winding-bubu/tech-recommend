@@ -1,10 +1,6 @@
 [
   {
-    "enhanceId": "exampleEnhance1",
-    "description": "增强示例1"
-  },
-  {
-    "enhanceId": "exampleEnhance2",
-    "description": "增强示例2"
+    "enhanceId": "homeRecCommonEnhance",
+    "description": "首页推荐通用后置处理"
   }
 ]

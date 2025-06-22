@@ -2,32 +2,12 @@
   {
     "relationType": "scene_channel",
     "relationFrom": "homeRecommendation",
-    "relationTo": "exampleChannel1"
-  },
-  {
-    "relationType": "scene_channel",
-    "relationFrom": "homeRecommendation",
-    "relationTo": "exampleChannel2"
-  },
-  {
-    "relationType": "scene_generic",
-    "relationFrom": "homeRecommendation",
-    "relationTo": "exampleGeneric1"
+    "relationTo": "home_rec_accurate"
   },
   {
     "relationType": "scene_enhance",
     "relationFrom": "homeRecommendation",
-    "relationTo": "exampleEnhance1"
-  },
-  {
-    "relationType": "channel_generic",
-    "relationFrom": "exampleChannel2",
-    "relationTo": "exampleGeneric2"
-  },
-  {
-    "relationType": "channel_enhance",
-    "relationFrom": "exampleChannel2",
-    "relationTo": "exampleEnhance2"
+    "relationTo": "homeRecCommonEnhance"
   },
   {
     "relationType": "scene_pool",
@@ -36,32 +16,37 @@
   },
   {
     "relationType": "channel_template",
-    "relationFrom": "exampleChannel1",
-    "relationTo": "exampleTemplate1"
+    "relationFrom": "home_rec_accurate",
+    "relationTo": "home_rec_accurate_template"
   },
   {
-    "relationType": "channel_template",
-    "relationFrom": "exampleChannel2",
-    "relationTo": "exampleTemplate2"
+    "relationType": "channel_generic",
+    "relationFrom": "home_rec_accurate",
+    "relationTo": "statusGeneric"
+  },
+  {
+    "relationType": "channel_generic",
+    "relationFrom": "home_rec_accurate",
+    "relationTo": "genderGeneric"
+  },
+  {
+    "relationType": "channel_generic",
+    "relationFrom": "home_rec_accurate",
+    "relationTo": "ageGeneric"
+  },
+  {
+    "relationType": "channel_generic",
+    "relationFrom": "home_rec_accurate",
+    "relationTo": "userPreferGeneric"
   },
   {
     "relationType": "template_index",
-    "relationFrom": "exampleTemplate1",
-    "relationTo": "my-index"
-  },
-  {
-    "relationType": "template_index",
-    "relationFrom": "exampleTemplate2",
+    "relationFrom": "home_rec_accurate_template",
     "relationTo": "my-index"
   },
   {
     "relationType": "template_dsl",
-    "relationFrom": "exampleTemplate1",
-    "relationTo": "exampleDsl1"
-  },
-  {
-    "relationType": "template_dsl",
-    "relationFrom": "exampleTemplate2",
-    "relationTo": "exampleDsl2"
+    "relationFrom": "home_rec_accurate_template",
+    "relationTo": "home_rec_accurate_dsl"
   }
 ]

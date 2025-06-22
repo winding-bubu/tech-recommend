@@ -1,10 +1,6 @@
 [
   {
-    "templateId": "exampleTemplate1",
-    "description": "示例模板1"
-  },
-  {
-    "templateId": "exampleTemplate2",
-    "description": "示例模板2"
+    "templateId": "home_rec_accurate_template",
+    "description": "首页推荐精准召回模板"
   }
 ]
