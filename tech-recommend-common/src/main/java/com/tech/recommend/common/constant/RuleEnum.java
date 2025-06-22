@@ -11,17 +11,27 @@ import lombok.Getter;
 @Getter
 public enum RuleEnum {
 
+    /****** 分子规则 ******/
+
     BOOL("bool"),
 
     MUST("must"),
 
     MUST_NOT("must_not"),
 
+    SHOULD("should"),
+
+    /****** 原子规则 ******/
+
     TERMS("terms"),
 
     TERM("term"),
 
     EXISTS("exists"),
+
+    RANGE("range"),
+
+    MATCH("match"),
 
     ;
 

@@ -8,13 +8,12 @@ import com.tech.recommend.common.constant.DslBuildEnum;
 import com.tech.recommend.domain.api.model.dsl.DslBuildRequest;
 import com.tech.recommend.domain.api.model.dsl.DslBuildResponse;
 import com.tech.recommend.domain.api.service.IDslBuildProcessor;
-import com.tech.recommend.service.dsl.rule.IRuleLoader;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -28,9 +27,6 @@ import java.util.Optional;
 @Slf4j
 @Component
 public class ForwardDslBuilder implements IDslBuildProcessor {
-
-    @Resource(name = "parentRuleLoader")
-    private IRuleLoader parentRuleLoader;
 
     @Override
     public DslBuildResponse build(DslBuildRequest dslBuildRequest) {
@@ -56,6 +52,8 @@ public class ForwardDslBuilder implements IDslBuildProcessor {
     }
 
     private String buildDsl(String dslTemplate, Map<String, Object> params) {
+
+        // 获取 filter 子句
         JSONObject root = JSON.parseObject(dslTemplate);
         JSONArray filter = Optional.ofNullable(root)
                 .map(item -> item.getJSONObject("query"))
@@ -66,31 +64,78 @@ public class ForwardDslBuilder implements IDslBuildProcessor {
             return null;
         }
 
-        // 动态处理filter子句
-        JSONArray parsedFilter = new JSONArray();
-        for (Object item : filter) {
-            if (!(item instanceof JSONObject)) {
-                continue;
-            }
-            JSONObject clause = (JSONObject)item;
-            JSONObject parsedClause = (JSONObject)item;
-            for (Map.Entry<String, Object> entry : clause.entrySet()) {
-                Object parsedRuleClause = parentRuleLoader.load(entry.getKey(), entry.getValue(), params);
-                if (Objects.nonNull(parsedRuleClause)) {
-                    parsedClause.put(entry.getKey(), parsedRuleClause);
-                    parsedFilter.add(parsedClause);
-                }
-            }
-        }
+        // 动态处理 filter 子句
+        JSONArray parsedFilter = this.parseJsonArrayClause(filter, params);
         if (CollectionUtils.isEmpty(parsedFilter)) {
             return null;
         }
         
-        // 构建解析后的dsl
-        return this.buildParsedRoot(parsedFilter).toString();
+        // 结果处理生成
+        return this.buildParsedRoot(parsedFilter, root).toString();
     }
 
-    private JSONObject buildParsedRoot(JSONArray parsedFilter) {
+    private JSONArray parseJsonArrayClause(JSONArray clause, Map<String, Object> params) {
+
+        JSONArray parsedResult = new JSONArray();
+
+        for (Object clauseObj : clause) {
+            if (!(clauseObj instanceof JSONObject)) {
+                continue;
+            }
+            JSONObject parsedClause = this.parseJsonObjectClause((JSONObject)clauseObj, params);
+            if (MapUtils.isNotEmpty(parsedClause)) {
+                parsedResult.add(parsedClause);
+            }
+        }
+        
+        if (CollectionUtils.isEmpty(parsedResult)) {
+            return null;
+        }
+
+        return parsedResult;
+    }
+
+    private JSONObject parseJsonObjectClause(JSONObject clause, Map<String, Object> params) {
+
+        JSONObject parsedResult = new JSONObject();
+
+        for (Map.Entry<String, Object> entry : clause.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            if (StringUtils.isBlank(key) || Objects.isNull(value)) {
+                continue;
+            }
+            Object parsedValue;
+            if (value instanceof String) {
+                parsedValue = this.parsedStringValue((String)value, params);
+            } else if (value instanceof JSONObject) {
+                parsedValue = this.parseJsonObjectClause((JSONObject)value, params);
+            } else if (value instanceof JSONArray) {
+                parsedValue = this.parseJsonArrayClause((JSONArray)value, params);
+            } else {
+                parsedValue = value;
+            }
+            if (Objects.nonNull(parsedValue)) {
+                parsedResult.put(key, parsedValue);
+            }
+        }
+
+        if (MapUtils.isEmpty(parsedResult)) {
+            return null;
+        }
+
+        return parsedResult;
+    }
+
+    private Object parsedStringValue(String value, Map<String, Object> params) {
+        if (value.startsWith("#")) {
+            String paramKey = value.substring(1);
+            return params.get(paramKey);
+        }
+        return value;
+    }
+    
+    private JSONObject buildParsedRoot(JSONArray parsedFilter, JSONObject originRoot) {
 
         JSONObject filter = new JSONObject();
         filter.put("filter", parsedFilter);
@@ -98,11 +143,18 @@ public class ForwardDslBuilder implements IDslBuildProcessor {
         JSONObject bool = new JSONObject();
         bool.put("bool", filter);
 
-        JSONObject root = new JSONObject();
-        root.put("query", bool);
+        JSONObject parsedRoot = new JSONObject();
+        parsedRoot.put("query", bool);
 
-        log.info("dsl print: {}", JSON.toJSONString(root));
-        return root;
+        for (Map.Entry<String, Object> entry : originRoot.entrySet()) {
+            if ("query".equals(entry.getKey())) {
+                continue;
+            }
+            parsedRoot.put(entry.getKey(), entry.getValue());
+        }
+
+        log.info("dsl print: {}", JSON.toJSONString(parsedRoot));
+        return parsedRoot;
     }
 
     @Override
