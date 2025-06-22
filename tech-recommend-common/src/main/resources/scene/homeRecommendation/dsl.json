@@ -41,7 +41,7 @@
       },
       "from": 0,
       "size": 50,
-      "source": [
+      "_source": [
         "itemId",
         "updateTime"
       ]
