@@ -81,4 +81,17 @@ public class ConfigurationInfo {
         return genericConfigs;
     }
 
+    public List<EnhanceConfig> getEnhanceConfigs() {
+        List<EnhanceConfig> enhanceConfigs = new ArrayList<>();
+        if (CollectionUtils.isNotEmpty(sceneEnhanceConfigs)) {
+            enhanceConfigs.addAll(sceneEnhanceConfigs);
+        }
+        channelEnhanceConfigs.forEach((key, value) -> {
+            if (CollectionUtils.isNotEmpty(value)) {
+                enhanceConfigs.addAll(value);
+            }
+        });
+        return enhanceConfigs;
+    }
+
 }

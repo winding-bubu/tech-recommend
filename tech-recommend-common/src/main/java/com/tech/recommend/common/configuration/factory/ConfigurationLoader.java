@@ -294,6 +294,14 @@ public class ConfigurationLoader {
                 .orElse(null);
     }
 
+    public EnhanceConfig getEnhanceConfig(String sceneId, String enhanceId) {
+        this.configCheck(sceneId);
+        return configurationInfos.get(sceneId).getEnhanceConfigs().stream()
+                .filter(enhanceConfig -> enhanceConfig.getEnhanceId().equals(enhanceId))
+                .findFirst()
+                .orElse(null);
+    }
+
     /**
      * 获取模板对应的索引配置
      * 
